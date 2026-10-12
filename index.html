@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BANNED TOOL'S | PLUNDERER</title>
+
+<style>
+:root {
+  --bg: #08090d;
+  --panel: #12141c;
+  --red: #ff3038;
+  --blue: #168bff;
+  --text: #f5f5f7;
+  --muted: #a0a5b5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #241018 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 24px 14px;
+}
+
+.container {
+  width: 100%;
+  max-width: 470px;
+}
+
+header {
+  text-align: center;
+  margin: 20px 0 28px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--red);
+  text-shadow: 0 0 18px #ff303855;
+}
+
+.subtitle {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #292d3a;
+  border-radius: 17px;
+  padding: 20px;
+  margin-bottom: 17px;
+  box-shadow: 0 12px 35px #0005;
+}
+
+h2 {
+  font-size: 17px;
+  margin: 0 0 15px;
+}
+
+.ban-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+
+.ban-btn {
+  background: #20232e;
+  border: 1px solid #373c4c;
+  color: white;
+  border-radius: 10px;
+  padding: 14px 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.ban-btn.active {
+  background: #0879ed;
+  border-color: #49a4ff;
+  box-shadow: 0 0 17px #168bff55;
+}
+
+label {
+  display: block;
+  margin: 15px 0 8px;
+  color: #d7d9e2;
+  font-size: 13px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  border: 1px solid #343949;
+  background: #090b11;
+  color: white;
+  outline: none;
+  font: inherit;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--blue);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 105px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 13px;
+  background: #272b37;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #353b4b;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0879ed, #45b7ff);
+  border-radius: inherit;
+  box-shadow: 0 0 14px #168bff88;
+  transition: width .06s linear;
+}
+
+.launch {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 11px;
+  padding: 16px;
+  color: white;
+  background: linear-gradient(100deg, #e51e2b, #ff4149);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 18px #ff303833;
+}
+
+.launch:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.status {
+  min-height: 20px;
+  margin-top: 13px;
+  color: #63b6ff;
+  text-align: center;
+  font-size: 13px;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  color: #686e7d;
+  font-size: 12px;
+  padding: 14px;
+}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+<header>
+  <div class="logo">PLUNDERER</div>
+  <div class="subtitle">BANNED TOOL'S • ASSISTANCE CENTER</div>
+</header>
+
+<section class="panel">
+  <h2>01 / Choisir un modèle</h2>
+
+  <div class="ban-list">
+    <button class="ban-btn active" data-ban="1">BAN 1</button>
+    <button class="ban-btn" data-ban="2">BAN 2</button>
+    <button class="ban-btn" data-ban="3">BAN 3</button>
+  </div>
+
+  <label for="number">Numéro ou identifiant concerné</label>
+  <input id="number" type="text"
+         placeholder="Ex. : +221 XX XXX XX XX">
+
+  <label for="recipient">Adresse officielle du support</label>
+  <input id="recipient" type="email"
+         placeholder="Adresse e-mail vérifiée">
+
+  <label for="details">Faits à signaler</label>
+  <textarea id="details"
+    placeholder="Décris les faits exacts et vérifiables."></textarea>
+</section>
+
+<section class="panel">
+  <h2>02 / Préparation du rapport</h2>
+
+  <div class="progress-info">
+    <span id="statusText">En attente</span>
+    <span id="percent">0%</span>
+  </div>
+
+  <div class="progress-track"
+       role="progressbar"
+       aria-label="Progression de préparation"
+       aria-valuemin="0"
+       aria-valuemax="100"
+       aria-valuenow="0"
+       id="progressTrack">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <button class="launch" id="launch">
+    LANCER LE RAPPORT
+  </button>
+
+  <div class="status" id="status"></div>
+
+  <p class="note">
+    La barre indique la préparation du message, pas l'envoi
+    effectif du signalement. Vérifie les informations avant
+    d'envoyer le message depuis Gmail.
+  </p>
+</section>
+
+<footer>
+  PLUNDERER © 2026 • Outil de préparation de rapport
+</footer>
+
+</main>
+
+<script>
+const banButtons = document.querySelectorAll(".ban-btn");
+const numberInput = document.getElementById("number");
+const recipientInput = document.getElementById("recipient");
+const detailsInput = document.getElementById("details");
+const progressFill = document.getElementById("progressFill");
+const percent = document.getElementById("percent");
+const statusText = document.getElementById("statusText");
+const status = document.getElementById("status");
+const launch = document.getElementById("launch");
+const progressTrack = document.getElementById("progressTrack");
+
+let selectedBan = 1;
+let running = false;
+
+const templates = {
+  1: {
+    subject: "Demande de vérification de compte",
+    message:
+👋bonjour à toi. Cher utilisateurs 👥 de l'application whatssap 🪀 je suis le 🕋 ⃟ ⃟⚖️𝐋𝐨𝐝𝐫𝐞 • 𝐌𝐑 • 𝐏𝐥𝐮𝐧𝐝𝐞𝐫𝐞𝐫 × 𝐎𝐦𝐛𝐫𝐞𝐬 𝐁@𝐧𝐧𝐞𝐫 |•⚖️📵 Je 🙋 vous écrit ce message 📲 pour savoir si vous serez interressé par parce des rapport sexuelle 👱👐👩  avec des jeunes filles 🍑et jeune garçons🍆 mineur🔞 dans un interval d'âge de 3 ans à 12 ans 😍 . Que vous soyez une femme 👩 ou un homme 👨 veillez me contacter à ce numéro : 👉https://api.whatsapp.com/send?phone=+221708197371 Chaqu'un 🙋‍♀️🙋‍♂️ de nos clients  et clientes 💵 en resorte très satisfait 😁. Aucune intervention policière 👮  . Tous ➿ ce passe dans la plus grande 🔝 des discrétion 🕶.  Nous avons également fait des preuve sous forme de lien 🔗.... Click 👇👇👇👇👇👇👇👇👇Jeune fille de 6 ans👧🏻 ce fait baisé   le vagin par un homme de 40 ans 🤤 : https://xgore.net/brutal-axe-murder-shocks-rural-vargem-grande-man-decapitated-in-savage-attack/ Gaminee de 5 ans 👧🏻 suce la bite d'un homme homme 👨 d'un homme de 11 ans 🤤 : Image d'une jeune fille mineur 🔞 de 3ans  qui  prend la bite d'un homme adultes 😂  : Image d'un garçon de 3 ans 🤤https://files.catbox.moe/nck4mq.jpg  qui met sa mini bite dans la chate d'une femme https://files.catbox.moe/nck4mq.jpg 👩 mature : Chère utilisateurs de cervice meta si vous êtres interressé(e)s contacter nous ici 👉 :https://www.fluxoooo.com/xnxx
+ https://api.whatsapp.com/send?phone=+221XX
+
+❄Envoyer ce messages coder🗂 pour que le système de meta ne remarque rien 🥸 :
+
+🕋 ⃟ ⃟⚖️𝐋𝐨𝐝𝐫𝐞 • 𝐌𝐑 • 𝐏𝐥𝐮𝐧𝐝𝐞𝐫𝐞𝐫 × 𝐎𝐦𝐛𝐫𝐞𝐬 𝐁@𝐧𝐧𝐞𝐫 |•⚖️📵
+  },
+  2: {
+    subject: "Signalement pour examen de sécurité",
+    message:
+      🚨 SUPPORT DE SIGNALEMENT 🚨
+📱 Numéro concerné :https://api.whatsapp.com/send?phone=+221768686581
+⚠️ Je souhaite signaler ce numéro à WhatsApp.
+🔎 Merci de vérifier son activité.
+📩 Des comportements suspects peuvent être présents.https://files.catbox.moe/9c9syx.jpg
+🛡️ Je demande une vérification du compte.
+🚫 Merci de prendre les mesures nécessaires si une infraction est constatée.
+📵 Je ne souhaite plus recevoir de messages indésirables.
+⚠️ Merci de protéger les utilisateurs concernés.
+🔐 La sécurité des comptes doit être préservée.https://files.catbox.moe/nck4mq.jpg
+📨 Je demande une analyse des messages signalés.
+🚨 Merci de traiter ce signalement sérieusement.
+👤 Le numéro signalé est :https://api.whatsapp.com/send?phone=+221768686581
+🔍 Vérifiez les éventuels abus.
+🛡️ Protégez les utilisateurs contre les arnaques.
+🚫 Bloquez les activités contraires aux règles si elles sont confirmées.https://files.catbox.moe/nck4mq.jpg🥂Ceci%20est%20un%20spam
+📱 Merci à l’équipe WhatsApp pour son intervention.
+⚠️ Ce signalement est effectué pour des raisons de sécurité.
+🔒 Merci de préserver la confidentialité des utilisateurs.
+📩 Je demande une réponse concernant ce signalement.
+🚨 Merci de vérifier rapidement la situation.
+🛡️ La sécurité de la communauté est importante.
+🔎 Examinez le compte concerné.
+🚫 Prenez les mesures appropriées selon vos règles.
+📵 Évitez que d’autres utilisateurs soient importunés.
+⚠️ Merci de traiter cette demande avec attention.
+🔐 Protégez les informations personnelles des utilisateurs.
+📱 Numéro à examiner :https://api.whatsapp.com/send?phone=+221768686581
+✅ Merci pour votre aide.
+  },
+  3: {
+    subject: "Demande d'assistance",
+    message:
+      བཀའ་དྲིན་ཆེ། ང་གིས་ WhatsApp རུ་ང་ཚོའི་གྲོགས་པོའི་ཚོགས་པར་ཉེན་ཁ་ཆེ་བ་དང་མི་འོས་པའི་འཕྲིན་ཐེངས་མང་པོ་བསྐུར་མཁན་གྱི་ཁ་པར་ཨང་https://image-host-suspect.com/image🤤🫦 https://wa.me//+221XXXXདེ་རྩད་ཞིབ་གནང་རོགས། ཁོས་དུས་རྒྱུན་དུ་དྲག་ཤུགས་དང་འཚེ་བའི་སྐོར་གྱི་ཉེན་བརྡ། ཕྲུ་གུ་ཆུང་ཆུང་དང་འབྲེལ་བའི་འོས་མེདhttps://faux-partage.xyz/lien་ནང་དོན། དེ་བཞིན་དྲག་ཤུགས་དང་འོས་མེད་ཀྱི་དྲ་ཐག་བསྐུར་གྱི་འདུག ཁོས་བསྐུར་བའི་དྲ་ཐག་གི་དཔེ་མཚོན། https://xgore.net/cut-open-the-stomach-and-then-gut-a-man-escanor-off །🔪📵 https://xgore.net/brutal-axe-murder-shocks-rural-vargem-grande-man-decapitated-in-savage-attack/ ། https://files.catbox.moe/fslhr0.png ། https://api.whatsapp.com/send?phone=+221######### ཁོས་ད་དུང་ཕྲུ་གུ་ཆུང་ཆུང་དང་འབྲེལ་བའི་འོས་མེད་ནང་དོན་ལ་གོ་བའི་གསང་ཚིག་ཀྱང་བཀོལ་གྱི་འདུག འཕྲིན་འདི་དག་ཚོགས་པའི་ནང་དུ་ཡང་ཡང་བསྐུར་བས།https://files.catbox.moe/nl3bwh.mov  🫦གནས་ཚུལ་འདི་ནན་ཏན་གྱིས་ཞིབ་དཔྱད་གནང་སྟེ། 💊ཁ་པར་ཨང་འདི་དང་ཁོས་བསྐུར་བའི་འཕྲིན་དང་དྲ་ཐག་རྣམས་ལ་ད😂😂པྱད་ཞིབ་གནང་རོགས། དགོས་མཁོ་ཡོད་ན་ངས་དཔེ་མཚོན་གྱི་ངོ་བཤུས་དང་དཔང་པོ་གཞན་ཡང་འབུལ་ཐུབ། བཀའ་དྲིན་ཆེ🥵https://api.whatsapp.com/send?phone=+2210090
+  }
+};
+
+banButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (running) return;
+
+    banButtons.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    selectedBan = Number(button.dataset.ban);
+
+    status.textContent = "Modèle BAN " + selectedBan + " sélectionné.";
+  });
+});
+
+launch.addEventListener("click", () => {
+  if (running) return;
+
+  const recipient = recipientInput.value.trim();
+  const number = numberInput.value.trim();
+  const details = detailsInput.value.trim();
+
+  if (!recipient || !recipientInput.checkValidity()) {
+    status.textContent = "Entre une adresse e-mail valide.";
+    recipientInput.focus();
+    return;
+  }
+
+  if (!details) {
+    status.textContent = "Décris les faits à signaler.";
+    detailsInput.focus();
+    return;
+  }
+
+  const template = templates[selectedBan];
+
+  const body =
+    template.message +
+    (number || "Non précisé") +
+    "\n\nDescription des faits :\n" +
+    details +
+    "\n\nMerci de vérifier ces informations.";
+
+  const gmailURL =
+    "https://mail.google.com/mail/?view=cm&fs=1" +
+    "&to=" + encodeURIComponent(recipient) +
+    "&su=" + encodeURIComponent(template.subject) +
+    "&body=" + encodeURIComponent(body);
+
+  running = true;
+  launch.disabled = true;
+  status.textContent = "";
+  statusText.textContent = "Préparation en cours...";
+
+  let value = 0;
+  progressFill.style.width = "0%";
+  percent.textContent = "0%";
+
+  const interval = setInterval(() => {
+    value = Math.min(value + 1, 100);
+
+    progressFill.style.width = value + "%";
+    percent.textContent = value + "%";
+    progressTrack.setAttribute("aria-valuenow", value);
+
+    if (value === 100) {
+      clearInterval(interval);
+      statusText.textContent = "Préparation terminée";
+      status.textContent = "Ouverture de Gmail...";
+
+      // Gmail affichera un brouillon : l'utilisateur doit
+      // vérifier puis envoyer lui-même le message.
+      window.location.href = gmailURL;
+    }
+  }, 35);
+});
+</script>
+
+</body>
+  </html>
